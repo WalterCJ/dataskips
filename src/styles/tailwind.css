@@ -14,7 +14,7 @@ textarea {
   background-color: #f5f7f9;
 }
 
-.main {
+.mainForm {
   @apply border-t-2;
   @apply border-gray-200;
 }
@@ -28,7 +28,7 @@ textarea {
 }
 
 @screen md {
-  .main {
+  .mainForm {
     @apply w-full;
   }
   .card {

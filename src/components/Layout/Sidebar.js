@@ -1,6 +1,6 @@
 import React from "react";
-import { ReactComponent as Image } from "../assets/image.svg";
-import { ReactComponent as Logo } from "../assets/logo.svg";
+import { ReactComponent as Image } from "./assets/image.svg";
+import { ReactComponent as Logo } from "./assets/logo.svg";
 
 export default function Sidebar() {
   return (

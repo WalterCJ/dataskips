@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Layout({ children }) {
+export default function Page({ children }) {
   return (
     <div className="bg-lightblue">
       <div className="max-w-5xl mx-auto lg:max-w-6xl">
