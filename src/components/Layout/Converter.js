@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { changeData, changeTemplate, changeOutput } from "../../store/actions";
 import TemplateEngine from "../../utils/index";
+import Papa from "papaparse";
 
 const Converter = ({
   changeData,
@@ -12,12 +13,14 @@ const Converter = ({
   output,
 }) => {
   const handleInputChange = (e) => {
+    let result;
     if (e.target.name === "csvdata") {
       changeData(e.target.value);
+      result = Papa.parse(e.target.value);
+    } else {
+      changeTemplate(e.target.value);
     }
-    changeTemplate(e.target.value);
-
-    changeOutput(TemplateEngine(template, csvData));
+    changeOutput(TemplateEngine(template, result.data));
   };
 
   return (
