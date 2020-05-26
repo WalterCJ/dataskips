@@ -7,3 +7,8 @@ export const changeTemplate = (template) => ({
   type: "CHANGE_TEMPLATE",
   payload: template,
 });
+
+export const changeOutput = (output) => ({
+  type: "CHANGE_OUTPUT",
+  payload: output,
+});

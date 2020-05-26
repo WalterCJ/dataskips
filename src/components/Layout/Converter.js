@@ -1,14 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
-import { changeData, changeTemplate } from "../../store/actions";
+import { changeData, changeTemplate, changeOutput } from "../../store/actions";
+import TemplateEngine from "../../utils/index";
 
-const Converter = ({ changeData, changeTemplate, csvData, template }) => {
+const Converter = ({
+  changeData,
+  changeTemplate,
+  changeOutput,
+  csvData,
+  template,
+  output,
+}) => {
   const handleInputChange = (e) => {
     if (e.target.name === "csvdata") {
       changeData(e.target.value);
-    } else {
-      changeTemplate(e.target.value);
     }
+    changeTemplate(e.target.value);
+
+    changeOutput(TemplateEngine(template, csvData));
   };
 
   return (
@@ -35,7 +44,7 @@ const Converter = ({ changeData, changeTemplate, csvData, template }) => {
       </div>
       <div className="card">
         <div className="card--content">
-          <textarea name="textarea-csv" rows="5"></textarea>
+          <textarea name="output" rows="5" value={output} readOnly></textarea>
         </div>
       </div>
     </form>
@@ -45,8 +54,11 @@ const Converter = ({ changeData, changeTemplate, csvData, template }) => {
 const mapStateToProps = (state) => ({
   csvData: state.csv,
   template: state.template,
+  output: state.output,
 });
 
-export default connect(mapStateToProps, { changeData, changeTemplate })(
-  Converter
-);
+export default connect(mapStateToProps, {
+  changeData,
+  changeTemplate,
+  changeOutput,
+})(Converter);

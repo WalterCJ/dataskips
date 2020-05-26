@@ -1,6 +1,7 @@
 const initialState = {
   csv: "",
   template: "",
+  output: "",
 };
 
 const converter = (state = initialState, action) => {
@@ -15,6 +16,11 @@ const converter = (state = initialState, action) => {
       return {
         ...state,
         csv: payload,
+      };
+    case "CHANGE_OUTPUT":
+      return {
+        ...state,
+        output: payload,
       };
     default:
       return state;
