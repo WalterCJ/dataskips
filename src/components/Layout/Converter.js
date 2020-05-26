@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
+import { changeData, changeTemplate } from "../../store/actions";
 
-export default function Converter() {
-  const [formData, setFormData] = useState({});
-
+const Converter = ({ changeData, changeTemplate, csvData, template }) => {
   const handleInputChange = (e) => {
-    console.log(e.currentTarget.name, e.currentTarget.value);
-    setFormData({
-      ...formData,
-      [e.currentTarget.name]: e.currentTarget.value,
-    });
+    if (e.target.name === "csvdata") {
+      changeData(e.target.value);
+    } else {
+      changeTemplate(e.target.value);
+    }
   };
 
-  const { csvData, tempalte } = formData;
   return (
     <form className="mainForm">
       <div className="card">
@@ -29,20 +28,25 @@ export default function Converter() {
           <textarea
             rows="5"
             name="template"
-            value={tempalte}
+            value={template}
             onChange={handleInputChange}
           />
         </div>
       </div>
       <div className="card">
         <div className="card--content">
-          <textarea
-            placeholder="hello world"
-            name="textarea-csv"
-            rows="5"
-          ></textarea>
+          <textarea name="textarea-csv" rows="5"></textarea>
         </div>
       </div>
     </form>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  csvData: state.csv,
+  template: state.template,
+});
+
+export default connect(mapStateToProps, { changeData, changeTemplate })(
+  Converter
+);
