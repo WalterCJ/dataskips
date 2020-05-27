@@ -1,5 +1,5 @@
 const TemplateEngine = function (templ, data) {
-  const re = /<%([^%>]+)?%>/g;
+  const re = /<%([^%>]+)?%>/;
   const outputData = data.reduce((acc, currData) => {
     return acc + interpolate(re, templ, currData) + "\n";
   }, "");
