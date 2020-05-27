@@ -16,7 +16,7 @@ const Converter = ({
     let result;
     if (e.target.name === "csvdata") {
       changeData(e.target.value);
-      result = Papa.parse(e.target.value);
+      result = Papa.parse(e.target.value, { skipEmptyLines: true });
     } else {
       changeTemplate(e.target.value);
     }
