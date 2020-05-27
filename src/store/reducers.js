@@ -1,6 +1,6 @@
 const initialState = {
   csv: "",
-  template: "- <% 2 %> of <% 1 %>",
+  template: "- <% 1 %> and <% 2 %>",
   output: "",
 };
 

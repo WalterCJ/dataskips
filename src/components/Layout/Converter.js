@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { changeData, changeTemplate, changeOutput } from "../../store/actions";
 import TemplateEngine from "../../utils/index";
@@ -13,15 +13,17 @@ const Converter = ({
   output,
 }) => {
   const handleInputChange = (e) => {
-    let result;
     if (e.target.name === "csvdata") {
       changeData(e.target.value);
-      result = Papa.parse(e.target.value, { skipEmptyLines: true });
     } else {
       changeTemplate(e.target.value);
     }
-    changeOutput(TemplateEngine(template, result.data));
   };
+
+  useEffect(() => {
+    let result = Papa.parse(csvData, { skipEmptyLines: true });
+    changeOutput(TemplateEngine(template, result.data));
+  }, [csvData, template]);
 
   return (
     <form className="mainForm">
