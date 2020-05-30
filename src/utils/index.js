@@ -1,9 +1,17 @@
-const TemplateEngine = function (templ, data) {
-  const re = /<%([^%>]+)?%>/;
+const TemplateEngine = function (
+  templ,
+  data,
+  delimiter = { open: "<%", close: "%>" }
+) {
+  const regex = expression(delimiter);
   const outputData = data.reduce((acc, currData) => {
-    return acc + interpolate(re, templ, currData) + "\n";
+    return acc + interpolate(regex, templ, currData) + "\n";
   }, "");
   return outputData;
+};
+
+const expression = (d) => {
+  return new RegExp(`${d.open}([^${d.close}]+)?${d.close}`);
 };
 
 const interpolate = (re, templ, data) => {
