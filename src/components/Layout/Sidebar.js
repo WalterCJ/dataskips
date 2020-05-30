@@ -1,8 +1,35 @@
 import React from "react";
 import { ReactComponent as Image } from "./assets/image.svg";
 import { ReactComponent as Logo } from "./assets/logo.svg";
+import { connect } from "react-redux";
+import Input from "../UI/Input";
+import { changeDelimiter, changeTemplate } from "../../store/actions";
 
-export default function Sidebar() {
+function Sidebar({ changeDelimiter, changeTemplate, csvData, template }) {
+  const delimiter = {
+    elementType: "select",
+    elementConfig: {
+      options: [
+        {
+          value: JSON.stringify({ open: "<%", close: "%>" }),
+          displayValue: "<% var %>",
+        },
+        {
+          value: JSON.stringify({ open: "{%", close: "%}" }),
+          displayValue: "{% var %}",
+        },
+        {
+          value: JSON.stringify({ open: "{{", close: "}}" }),
+          displayValue: "{{ var }}",
+        },
+      ],
+    },
+    value: "fastest",
+  };
+  const handleInputChange = (e) => {
+    const delimiter = JSON.parse(e.target.value);
+    changeDelimiter(delimiter);
+  };
   return (
     <div className="justify-center p-12 md:p-5 md:w-7/12 bg-white">
       <div className="md:w-full lg:w-5/6 xl:max-w-sm mx-auto hidden md:block">
@@ -16,17 +43,44 @@ export default function Sidebar() {
           DataSkips
         </span>
       </div>
-      <div className="pl-0">
+      <div className="pl-0 flex flex-col items-center">
         <h1 className="font-light text-lg mt-6 md:text-center">
           Transform your tabular data!
         </h1>
-        <p className="text-base md:text-base text-gray-600 mt-3 leading-relaxed md:text-center">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis
-          veritatis quo quas. Dignissimos accusantium aliquid, dolor numquam
-          eveniet error quae harum? Debitis officia rem atque fugit praesentium
-          autem ullam recusandae?
-        </p>
+        <div className="block relative w-1/2 ">
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="delimiter"
+            >
+              Delimiter
+            </label>
+            <Input
+              id={"delimiter"}
+              elementConfig={delimiter.elementConfig}
+              value={delimiter.value}
+              elementType={delimiter.elementType}
+              onChange={handleInputChange}
+            />
+            <div className="pointer-events-none absolute inset-y-0 pt-4 right-0 flex items-center px-2 text-gray-700">
+              <svg
+                className="fill-current h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
+const mapStateToProps = (state) => ({
+  csvData: state.csv,
+  template: state.template,
+});
+export default connect(mapStateToProps, { changeDelimiter, changeTemplate })(
+  Sidebar
+);

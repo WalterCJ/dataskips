@@ -12,3 +12,8 @@ export const changeOutput = (output) => ({
   type: "CHANGE_OUTPUT",
   payload: output,
 });
+
+export const changeDelimiter = (delimiter) => ({
+  type: "CHANGE_DELIMITER",
+  payload: delimiter,
+});
