@@ -8,8 +8,6 @@ import {
   changeTemplate,
   changeOutput,
 } from "../../store/actions";
-import Papa from "papaparse";
-import TemplateEngine from "../../utils/index";
 
 function Sidebar({
   changeDelimiter,
@@ -45,9 +43,8 @@ function Sidebar({
   };
 
   useEffect(() => {
-    let result = Papa.parse(csvData, { skipEmptyLines: true });
-    changeOutput(TemplateEngine(template, result.data, delimiter));
-  }, [delimiter]);
+    changeOutput(template, csvData, delimiter);
+  }, [csvData, template, delimiter]);
 
   return (
     <div className="justify-center p-12 md:p-5 md:w-7/12 bg-white">

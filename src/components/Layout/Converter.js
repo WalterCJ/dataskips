@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { changeData, changeTemplate, changeOutput } from "../../store/actions";
-import TemplateEngine from "../../utils/index";
-import Papa from "papaparse";
 
 const Converter = ({
   changeData,
@@ -22,8 +20,7 @@ const Converter = ({
   };
 
   useEffect(() => {
-    let result = Papa.parse(csvData, { skipEmptyLines: true });
-    changeOutput(TemplateEngine(template, result.data, delimiter));
+    changeOutput(template, csvData, delimiter);
   }, [csvData, template, delimiter]);
 
   return (
