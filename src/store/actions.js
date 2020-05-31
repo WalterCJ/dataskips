@@ -1,5 +1,5 @@
-import TemplateEngine from "../utils/TemplateEngine";
 import Papa from "papaparse";
+import TemplateEngine from "../utils/TemplateEngine";
 
 const parseData = (template, data, delimiter) => {
   const result = Papa.parse(data, { skipEmptyLines: true });

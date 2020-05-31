@@ -3,11 +3,17 @@ import { ReactComponent as Image } from "./assets/image.svg";
 import { ReactComponent as Logo } from "./assets/logo.svg";
 import { connect } from "react-redux";
 import Input from "../UI/Input";
-import { changeDelimiter, changeOutput } from "../../store/actions";
+import {
+  changeDelimiter,
+  changeOutput,
+  changeTemplate,
+} from "../../store/actions";
+import replaceDelimiter from "../../utils/replaceDelimiter";
 
 function Sidebar({
   changeDelimiter,
   changeOutput,
+  changeTemplate,
   csvData,
   template,
   delimiter,
@@ -33,8 +39,10 @@ function Sidebar({
     value: JSON.stringify(delimiter),
   };
   const handleInputChange = (e) => {
-    const delimiter = JSON.parse(e.target.value);
-    changeDelimiter(delimiter);
+    const newDelimiter = JSON.parse(e.target.value);
+    const newTemplate = replaceDelimiter(template, delimiter, newDelimiter);
+    changeDelimiter(newDelimiter);
+    changeTemplate(newTemplate);
   };
 
   useEffect(() => {
@@ -96,4 +104,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   changeDelimiter,
   changeOutput,
+  changeTemplate,
 })(Sidebar);
