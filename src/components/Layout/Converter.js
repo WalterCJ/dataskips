@@ -10,6 +10,7 @@ const Converter = ({
   changeOutput,
   csvData,
   template,
+  delimiter,
   output,
 }) => {
   const handleInputChange = (e) => {
@@ -22,8 +23,8 @@ const Converter = ({
 
   useEffect(() => {
     let result = Papa.parse(csvData, { skipEmptyLines: true });
-    changeOutput(TemplateEngine(template, result.data));
-  }, [csvData, template]);
+    changeOutput(TemplateEngine(template, result.data, delimiter));
+  }, [csvData, template, delimiter]);
 
   return (
     <form className="mainForm">
@@ -59,6 +60,7 @@ const Converter = ({
 const mapStateToProps = (state) => ({
   csvData: state.csv,
   template: state.template,
+  delimiter: state.delimiter,
   output: state.output,
 });
 

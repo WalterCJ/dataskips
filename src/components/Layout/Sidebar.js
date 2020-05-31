@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ReactComponent as Image } from "./assets/image.svg";
 import { ReactComponent as Logo } from "./assets/logo.svg";
 import { connect } from "react-redux";
 import Input from "../UI/Input";
-import { changeDelimiter, changeTemplate } from "../../store/actions";
+import {
+  changeDelimiter,
+  changeTemplate,
+  changeOutput,
+} from "../../store/actions";
+import Papa from "papaparse";
+import TemplateEngine from "../../utils/index";
 
-function Sidebar({ changeDelimiter, changeTemplate, csvData, template }) {
-  const delimiter = {
+function Sidebar({
+  changeDelimiter,
+  changeTemplate,
+  changeOutput,
+  csvData,
+  template,
+  delimiter,
+}) {
+  const delimiterInput = {
     elementType: "select",
     elementConfig: {
       options: [
@@ -24,12 +37,18 @@ function Sidebar({ changeDelimiter, changeTemplate, csvData, template }) {
         },
       ],
     },
-    value: "fastest",
+    value: JSON.stringify(delimiter),
   };
   const handleInputChange = (e) => {
     const delimiter = JSON.parse(e.target.value);
     changeDelimiter(delimiter);
   };
+
+  useEffect(() => {
+    let result = Papa.parse(csvData, { skipEmptyLines: true });
+    changeOutput(TemplateEngine(template, result.data, delimiter));
+  }, [delimiter]);
+
   return (
     <div className="justify-center p-12 md:p-5 md:w-7/12 bg-white">
       <div className="md:w-full lg:w-5/6 xl:max-w-sm mx-auto hidden md:block">
@@ -57,9 +76,9 @@ function Sidebar({ changeDelimiter, changeTemplate, csvData, template }) {
             </label>
             <Input
               id={"delimiter"}
-              elementConfig={delimiter.elementConfig}
-              value={delimiter.value}
-              elementType={delimiter.elementType}
+              elementConfig={delimiterInput.elementConfig}
+              value={JSON.stringify(delimiter)}
+              elementType={delimiterInput.elementType}
               onChange={handleInputChange}
             />
             <div className="pointer-events-none absolute inset-y-0 pt-4 right-0 flex items-center px-2 text-gray-700">
@@ -80,7 +99,10 @@ function Sidebar({ changeDelimiter, changeTemplate, csvData, template }) {
 const mapStateToProps = (state) => ({
   csvData: state.csv,
   template: state.template,
+  delimiter: state.delimiter,
 });
-export default connect(mapStateToProps, { changeDelimiter, changeTemplate })(
-  Sidebar
-);
+export default connect(mapStateToProps, {
+  changeDelimiter,
+  changeTemplate,
+  changeOutput,
+})(Sidebar);
