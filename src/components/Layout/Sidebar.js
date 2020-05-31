@@ -3,15 +3,10 @@ import { ReactComponent as Image } from "./assets/image.svg";
 import { ReactComponent as Logo } from "./assets/logo.svg";
 import { connect } from "react-redux";
 import Input from "../UI/Input";
-import {
-  changeDelimiter,
-  changeTemplate,
-  changeOutput,
-} from "../../store/actions";
+import { changeDelimiter, changeOutput } from "../../store/actions";
 
 function Sidebar({
   changeDelimiter,
-  changeTemplate,
   changeOutput,
   csvData,
   template,
@@ -100,6 +95,5 @@ const mapStateToProps = (state) => ({
 });
 export default connect(mapStateToProps, {
   changeDelimiter,
-  changeTemplate,
   changeOutput,
 })(Sidebar);
