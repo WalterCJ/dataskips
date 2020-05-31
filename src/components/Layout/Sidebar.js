@@ -66,8 +66,8 @@ function Sidebar({
         <h1 className="font-light text-lg mt-6 md:text-center">
           Transform your tabular data!
         </h1>
-        <div className="block relative w-1/2 ">
-          <div className="mb-4">
+        <div className="block relative w-1/2 mt-10">
+          <div className="">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="delimiter"
@@ -81,7 +81,7 @@ function Sidebar({
               elementType={delimiterInput.elementType}
               onChange={handleInputChange}
             />
-            <div className="pointer-events-none absolute inset-y-0 pt-4 right-0 flex items-center px-2 text-gray-700">
+            <div className="pointer-events-none absolute inset-y-0 pt-8 right-0 flex items-center px-2 text-gray-700">
               <svg
                 className="fill-current h-4 w-4"
                 xmlns="http://www.w3.org/2000/svg"
