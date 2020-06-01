@@ -24,7 +24,8 @@ const Input = (props) => {
     case "select":
       inputElement = (
         <select
-          value={props.value}
+          name={props.name}
+          value={props.id}
           onChange={props.onChange}
           className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
         >
