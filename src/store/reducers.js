@@ -1,8 +1,10 @@
+import { exampleList } from "../utils/optionsList";
 const initialState = {
   csv: "",
   template: "- <% 1 %> and <% 2 %>",
   delimiter: { open: "<%", close: "%>" },
   output: "",
+  examples: exampleList,
 };
 
 const converter = (state = initialState, action) => {
@@ -27,6 +29,13 @@ const converter = (state = initialState, action) => {
       return {
         ...state,
         output: payload,
+      };
+    case "CHANGE_EXAMPLE":
+      return {
+        ...state,
+        delimiter: exampleList[payload].delimiter,
+        template: exampleList[payload].template,
+        csv: exampleList[payload].csv,
       };
     default:
       return state;

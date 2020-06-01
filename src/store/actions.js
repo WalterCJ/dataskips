@@ -28,3 +28,8 @@ export const changeDelimiter = (delimiter) => ({
   type: "CHANGE_DELIMITER",
   payload: delimiter,
 });
+
+export const changeExample = (example) => ({
+  type: "CHANGE_EXAMPLE",
+  payload: example,
+});
