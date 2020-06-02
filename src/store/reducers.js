@@ -1,10 +1,10 @@
 import { exampleList } from "../utils/optionsList";
 const initialState = {
   csv: "",
-  template: "- <% 1 %> and <% 2 %>",
-  delimiter: { open: "<%", close: "%>" },
+  template: "",
+  delimiter: {},
   output: "",
-  examples: exampleList,
+  examples: [],
 };
 
 const converter = (state = initialState, action) => {
