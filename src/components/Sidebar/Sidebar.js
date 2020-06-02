@@ -48,7 +48,6 @@ function Sidebar({
   useEffect(() => {
     changeOutput(template, csvData, delimiter);
   }, [csvData, template, delimiter]);
-
   return (
     <div className="justify-center p-12 md:p-5 md:w-7/12 bg-white">
       <div className="md:w-full lg:w-5/6 xl:max-w-sm mx-auto hidden md:block">
@@ -105,7 +104,7 @@ function Sidebar({
               id={"examples"}
               name={"examples"}
               elementConfig={examplesInput.elementConfig}
-              value={examplesInput.elementConfig}
+              value={examples.value}
               elementType={examplesInput.elementType}
               onChange={handleInputChange}
             />

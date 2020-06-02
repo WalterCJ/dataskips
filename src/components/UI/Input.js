@@ -25,7 +25,7 @@ const Input = (props) => {
       inputElement = (
         <select
           name={props.name}
-          value={props.id}
+          value={props.value}
           onChange={props.onChange}
           className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
         >
