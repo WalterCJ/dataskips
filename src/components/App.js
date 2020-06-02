@@ -1,14 +1,14 @@
 import React from "react";
-import Page from "./Layout/Page";
-import Sidebar from "./Layout/Sidebar";
-import Converter from "./Layout/Converter";
+import Layout from "./Layout";
+import Sidebar from "./Sidebar";
+import Converter from "./Converter";
 
 function App() {
   return (
-    <Page>
+    <Layout>
       <Sidebar />
       <Converter />
-    </Page>
+    </Layout>
   );
 }
 
