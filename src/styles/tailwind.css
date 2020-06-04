@@ -25,14 +25,17 @@ textarea {
 
 .card--content {
   @apply rounded-md border-l-8 border-red-200 flex flex-col shadow bg-white;
+  @apply h-full;
 }
 
 @screen md {
   .mainForm {
     @apply w-full;
+    @apply flex flex-col justify-evenly;
   }
   .card {
     @apply w-full;
+    height: 30%;
   }
 }
 
