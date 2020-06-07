@@ -53,7 +53,7 @@ function Sidebar({
       <div className="md:w-full lg:w-5/6 xl:max-w-sm mx-auto hidden md:block">
         <Image />
       </div>
-      <div className="flex items-center md:justify-center mt-4">
+      <div className="flex items-center justify-center mt-4">
         <span className="h-10 w-10 md:h-8 md:w-8">
           <Logo />
         </span>
@@ -65,7 +65,7 @@ function Sidebar({
         <h1 className="font-light text-lg mt-6 md:text-center">
           Transform your tabular data!
         </h1>
-        <div className="block relative w-1/2 mt-10">
+        <div className="block relative w-3/4 md:w-1/2 mt-10">
           <div>
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -92,7 +92,7 @@ function Sidebar({
             </div>
           </div>
         </div>
-        <div className="block relative w-1/2 mt-10">
+        <div className="block relative w-3/4 md:w-1/2 mt-10">
           <div>
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
