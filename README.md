@@ -14,6 +14,10 @@ yarn
 
 On the bottom left you have some examples.
 
+## TODO
+
+Do #12 first.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
